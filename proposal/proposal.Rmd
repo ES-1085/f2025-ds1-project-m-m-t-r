@@ -11,10 +11,14 @@ library(readxl)
 ```
 
 ## 1. Introduction
-
-The introduction should introduce your general research question(s) and your data (where it came from, how it was collected, what are the cases, what are the variables, etc.).
-
-Text goes here. Refer to the Markdown Quick Reference: Help -> Markdown Quick Reference. 
+The study focused on the effect of heatwaves on coral reef fish. The study was conducted by Van Wert et al. and was published on July 15, 2024. The Hawkfish were collected in Mo'orea, French Polynesia in 2019 during the winter and 2022 during the summer. They studied how marine heatwaves impacted the performance and thermal tolerance of the arceye hawkfish, which is a tropical predatory fish. 
+More specifically, the researchers used five treatments (27, 28, 29, 31, or 33°C) for one week to test hawkfish’s acclimation ability, which they measured by metabolic performance metrics, including maximum metabolic rate (MMR), standard metabolic rate (SMR), and costs of digestion (specific dynamic action, SDA), using custom-made respirometry chambers. A subset of fish and wild fish were tested for thermal tolerance using an acute cardiac thermal tolerance test. 
+This dataset contains 75 cases and 22 variables.
+For this project, our research question focuses on the negative effects of heatwaves on hawkfish to understand the greater effect of climate change on marine populations. Some questions include:
+1. What threat do heatwaves pose to hawkfish?
+2. Does the season (summer vs winter) have any effect on the fish’s energy?
+3. What is the long-term impact of these heatwaves on the fish’s health and physiology?
+4. Will warming ocean temperatures affect the size of future hawkfish populations?
 
 ## 2. Data
 
