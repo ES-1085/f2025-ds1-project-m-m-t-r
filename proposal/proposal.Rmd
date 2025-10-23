@@ -7,7 +7,9 @@ output: github_document
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
-## Add any additional packages you are using here
+library(readxl)
+heatwaves_coral_fish <- read_csv("../data/VanWert_etal_2023_hawkfish.csv")
+View(heatwaves_coral_fish)
 ```
 
 ## 1. Introduction
