@@ -7,7 +7,7 @@ output: github_document
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
-## Add any additional packages you are using here
+library(readxl)
 ```
 
 ## 1. Introduction
@@ -21,9 +21,8 @@ Text goes here. Refer to the Markdown Quick Reference: Help -> Markdown Quick Re
 Text goes here. Place your data in the /data folder, and add dimensions and codebook to the README in that folder. Then print out the output of glimpse() or skim() of your data frame.
 
 ```{r}
-# Code goes here
-# Read in your data file
-# Print the output of glimpse() or skim()
+heatwaves_coral_fish <- read_csv("../data/VanWert_etal_2023_hawkfish.csv")
+glimpse(heatwaves_coral_fish)
 ```
 
 ## 3. Data analysis plan
