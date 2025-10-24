@@ -46,58 +46,62 @@ change on marine populations. Some questions include:
 
 The dataset including the following variables:
 
-`hawkfish_no` = unique fish ID
+1.  `hawkfish_no` = unique fish ID
 
-`year` = year of fish collection and measurements
+2.  `year` = year of fish collection and measurements
 
-`season` = Austral summer (summer) or Austral winter (winter)
+3.  `season` = Austral summer (summer) or Austral winter (winter)
 
-`treatment_new` = acclimation temperature; ‘wild’ indicates fish were
-not acclimated and were collected from the wild and immediately tested
+4.  `treatment_new` = acclimation temperature; ‘wild’ indicates fish
+    were not acclimated and were collected from the wild and immediately
+    tested
 
-`bw_g` = wet mass of fish (units g)
+5.  `bw_g` = wet mass of fish (units g)
 
-`tank` = fish tank ID during acclimation
+6.  `tank` = fish tank ID during acclimation
 
-`tl_cm` = total length of fish (units cm)
+7.  `tl_cm` = total length of fish (units cm)
 
-`sl_cm` = standard length of fish (units cm)
+8.  `sl_cm` = standard length of fish (units cm)
 
-`chase_pre_v_post` = whether exhaustive exercise chase occurred before
-(pre) or after (post) SMR measurements
+9.  `chase_pre_v_post` = whether exhaustive exercise chase occurred
+    before (pre) or after (post) SMR measurements
 
-`mmr_corrected` = body mass corrected maximum metabolic rate by
-universal metabolic scaling coefficient of 0.89 (units mg O2 kg-1 min-1)
+10. `mmr_corrected` = body mass corrected maximum metabolic rate by
+    universal metabolic scaling coefficient of 0.89 (units mg O2 kg-1
+    min-1)
 
-`smr_low10_all` = standard metabolic rate (units mg O2 kg-1 min-1)
+11. `smr_low10_all` = standard metabolic rate (units mg O2 kg-1 min-1)
 
-`aas_corrected` = absolute aerobic scope (units mg O2 kg-1 min-1)
+12. `aas_corrected` = absolute aerobic scope (units mg O2 kg-1 min-1)
 
-`fas` = factorial aerobic scope calculated as mmr/smr (unitless)
+13. `fas` = factorial aerobic scope calculated as mmr/smr (unitless)
 
-`percent_bw_scallop_fed` = percent of body weight scallop fed for SDA
-trial
+14. `percent_bw_scallop_fed` = percent of body weight scallop fed for
+    SDA trial
 
-`SDA_integrated` = integral of specific dynamic action (SDA) (units mg
-O2 kg-1)
+15. `SDA_integrated` = integral of specific dynamic action (SDA) (units
+    mg O2 kg-1)
 
-`SDA_duration` = duration of specific dynamic action (SDA) (units hours)
+16. `SDA_duration` = duration of specific dynamic action (SDA) (units
+    hours)
 
-`peak_SDA_max` = maximum metabolic oxygen consumption (MO2) reached
-during specific dynamic action (SDA) (units mg O2 kg-1 min-1)
+17. `peak_SDA_max` = maximum metabolic oxygen consumption (MO2) reached
+    during specific dynamic action (SDA) (units mg O2 kg-1 min-1)
 
-`time_peak_SDA_max` = time at which peak_SDA_max occurred (units hours)
+18. `time_peak_SDA_max` = time at which peak_SDA_max occurred (units
+    hours)
 
-`sda_coeff` = specific dynamic action (SDA) coefficient (units %)
+19. `sda_coeff` = specific dynamic action (SDA) coefficient (units %)
 
-`tarr` = temperature of arrhythmia (units degC), only measured during
-winter tests
+20. `tarr` = temperature of arrhythmia (units degC), only measured
+    during winter tests
 
-`fhmax_peak` = peak maximum heart rate (units beats per min), only
-measured during winter tests
+21. `fhmax_peak` = peak maximum heart rate (units beats per min), only
+    measured during winter tests
 
-`tpeak` = temperature at which fhmax_peak occurred (units degC), only
-measured during winter tests
+22. `tpeak` = temperature at which fhmax_peak occurred (units degC),
+    only measured during winter tests
 
 ``` r
 heatwaves_coral_fish <- read_csv("../data/VanWert_etal_2023_hawkfish.csv")
@@ -145,16 +149,16 @@ glimpse(heatwaves_coral_fish)
 
 - What variables will you visualize to explore your research questions?
 
-Season: season = Austral summer (summer) or Austral winter (winter)
+Season: `season` = Austral summer (summer) or Austral winter (winter)
 
-Temperature: treatment_new = acclimation temperature; ‘wild’ indicates
+Temperature: `treatment_new` = acclimation temperature; ‘wild’ indicates
 fish were not acclimated and were Mass of fish: bw_g = wet mass of fish
 (units g)
 
-Fish length: tl_cm = total length of fish (units cm)
+Fish length: `tl_cm` = total length of fish (units cm)
 
-Heart rate: fhmax_peak = peak maximum heart rate (units beats per min),
-only measured during winter tests Metabolic rate
+Heart rate: `fhmax_peak` = peak maximum heart rate (units beats per
+min), only measured during winter tests Metabolic rate
 
 - Will there be any other data that you need to find to help with your
   research question?
@@ -163,16 +167,82 @@ Since our dataset only contains 75 observations, we think it will be
 helpful if we can find some other data in water temperatures and the
 amount or size of Hawkfish any other types of fish.
 
-- Very preliminary exploratory data analysis, including some summary
-  statistics and visualizations, along with some explanation on how they
-  help you learn more about your data. (You can add to these later as
-  you work on your project.)
 - The data visualization(s) that you believe will be useful in exploring
   your question(s). (You can update these later as you work on your
   project.)
 
+Scatterplot of `mmr_corrected` vs `SDA_integrated` with points colored
+by `treatment_new` — to see if heatwave affects energy use after
+feeding.
+
+Boxplot of `SDA_integrated` or `fas` by `season` to see if fish have
+higher energy use in one season.
+
+- Very preliminary exploratory data analysis, including some summary
+  statistics and visualizations, along with some explanation on how they
+  help you learn more about your data. (You can add to these later as
+  you work on your project.)
+
 ``` r
-# Code goes here
-# Code to calculate summary statistics
-# Code for a visualization
+heatwaves_coral_fish |>
+  summarise(
+    mean_mmr   = mean(mmr_corrected, na.rm = TRUE),
+    median_mmr = median(mmr_corrected, na.rm = TRUE),
+    min_mmr    = min(mmr_corrected, na.rm = TRUE),
+    max_mmr    = max(mmr_corrected, na.rm = TRUE),
+
+    mean_smr   = mean(smr_low10_all, na.rm = TRUE),
+    median_smr = median(smr_low10_all, na.rm = TRUE),
+    min_smr    = min(smr_low10_all, na.rm = TRUE),
+    max_smr    = max(smr_low10_all, na.rm = TRUE),
+
+    mean_SDA   = mean(SDA_integrated, na.rm = TRUE),
+    median_SDA = median(SDA_integrated, na.rm = TRUE),
+    min_SDA    = min(SDA_integrated, na.rm = TRUE),
+    max_SDA    = max(SDA_integrated, na.rm = TRUE),
+
+    mean_bw    = mean(bw_g, na.rm = TRUE),
+    mean_tl    = mean(tl_cm, na.rm = TRUE)
+  )
 ```
+
+    ## # A tibble: 1 × 14
+    ##   mean_mmr median_mmr min_mmr max_mmr mean_smr median_smr min_smr max_smr
+    ##      <dbl>      <dbl>   <dbl>   <dbl>    <dbl>      <dbl>   <dbl>   <dbl>
+    ## 1     13.3       13.6    7.25    22.4     3.52       3.36    1.37    6.58
+    ## # ℹ 6 more variables: mean_SDA <dbl>, median_SDA <dbl>, min_SDA <dbl>,
+    ## #   max_SDA <dbl>, mean_bw <dbl>, mean_tl <dbl>
+
+``` r
+# 1) Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR)
+heatwaves_coral_fish |>
+  ggplot(aes(x = treatment_new, y = mmr_corrected)) +
+  geom_boxplot() +
+  labs(
+    title = "MMR by Heatwave Treatment",
+    x = "Treatment",
+    y = "MMR (corrected)"
+  )
+```
+
+    ## Warning: Removed 11 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+![](proposal_files/figure-gfm/visualizations-1.png)<!-- -->
+
+``` r
+# 2) Scatter: Body length vs. post-feeding energy use, colored by season
+heatwaves_coral_fish |>
+  ggplot(aes(x = tl_cm, y = SDA_integrated, color = season)) +
+  geom_point(alpha = 0.8) +
+  labs(
+    title = "Body Length vs. SDA (by Season)",
+    x = "Total Length (cm)",
+    y = "SDA Integrated"
+  )
+```
+
+    ## Warning: Removed 48 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](proposal_files/figure-gfm/visualizations-2.png)<!-- -->
