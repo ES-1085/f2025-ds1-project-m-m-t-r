@@ -107,6 +107,7 @@ Boxplot of `SDA_integrated` or `fas` by `season` to see if fish have higher ener
 
 - Very preliminary exploratory data analysis, including some summary statistics and visualizations, along with some explanation on how they help you learn more about your data. (You can add to these later as you work on your project.)
 
+The boxplot shows how metabolic rate (MMR) changes across heatwave treatments, helping identify which temperatures lead to higher energy use. The scatterplot shows how body size relates to energy use (SDA) and whether this relationship differs by season, revealing seasonal patterns in metabolism.
 
 ```{r summary-statistics}
 heatwaves_coral_fish |>
