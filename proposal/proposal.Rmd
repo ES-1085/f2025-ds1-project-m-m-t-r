@@ -12,17 +12,69 @@ library(readxl)
 
 ## 1. Introduction
 The study focused on the effect of heatwaves on coral reef fish. The study was conducted by Van Wert et al. and was published on July 15, 2024. The Hawkfish were collected in Mo'orea, French Polynesia in 2019 during the winter and 2022 during the summer. They studied how marine heatwaves impacted the performance and thermal tolerance of the arceye hawkfish, which is a tropical predatory fish. 
+
 More specifically, the researchers used five treatments (27, 28, 29, 31, or 33°C) for one week to test hawkfish’s acclimation ability, which they measured by metabolic performance metrics, including maximum metabolic rate (MMR), standard metabolic rate (SMR), and costs of digestion (specific dynamic action, SDA), using custom-made respirometry chambers. A subset of fish and wild fish were tested for thermal tolerance using an acute cardiac thermal tolerance test. 
+
 This dataset contains 75 cases and 22 variables.
+
 For this project, our research question focuses on the negative effects of heatwaves on hawkfish to understand the greater effect of climate change on marine populations. Some questions include:
+
 1. What threat do heatwaves pose to hawkfish?
+
 2. Does the season (summer vs winter) have any effect on the fish’s energy?
+
 3. What is the long-term impact of these heatwaves on the fish’s health and physiology?
+
 4. Will warming ocean temperatures affect the size of future hawkfish populations?
 
 ## 2. Data
 
-Text goes here. Place your data in the /data folder, and add dimensions and codebook to the README in that folder. Then print out the output of glimpse() or skim() of your data frame.
+The dataset including the following variables:
+
+`hawkfish_no` = unique fish ID
+
+`year` = year of fish collection and measurements
+
+`season` = Austral summer (summer) or Austral winter (winter)
+
+`treatment_new` = acclimation temperature; 'wild' indicates fish were not acclimated and were collected from the wild and immediately tested
+
+`bw_g` = wet mass of fish (units g)
+
+`tank` = fish tank ID during acclimation
+
+`tl_cm` = total length of fish (units cm)
+
+`sl_cm` = standard length of fish (units cm)
+
+`chase_pre_v_post` = whether exhaustive exercise chase occurred before (pre) or after (post) SMR measurements
+
+`mmr_corrected` = body mass corrected maximum metabolic rate by universal metabolic scaling coefficient of 0.89 (units mg O2 kg-1 min-1)
+
+`smr_low10_all` = standard metabolic rate (units mg O2 kg-1 min-1)
+
+`aas_corrected` = absolute aerobic scope (units mg O2 kg-1 min-1)
+
+`fas` = factorial aerobic scope calculated as mmr/smr (unitless)
+
+`percent_bw_scallop_fed` = percent of body weight scallop fed for SDA trial
+
+`SDA_integrated` = integral of specific dynamic action (SDA) (units mg O2 kg-1)
+
+`SDA_duration` = duration of specific dynamic action (SDA) (units hours)
+
+`peak_SDA_max` = maximum metabolic oxygen consumption (MO2) reached during specific dynamic action (SDA) (units mg O2 kg-1 min-1)
+
+`time_peak_SDA_max` = time at which peak_SDA_max occurred (units hours)
+
+`sda_coeff` = specific dynamic action (SDA) coefficient (units %)
+
+`tarr` = temperature of arrhythmia (units degC), only measured during winter tests
+
+`fhmax_peak` = peak maximum heart rate (units beats per min), only measured during winter tests
+
+`tpeak` = temperature at which fhmax_peak occurred (units degC), only measured during winter tests
+
 
 ```{r}
 heatwaves_coral_fish <- read_csv("../data/VanWert_etal_2023_hawkfish.csv")
@@ -31,9 +83,22 @@ glimpse(heatwaves_coral_fish)
 
 ## 3. Data analysis plan
 
-Text goes here.
 - What variables will you visualize to explore your research questions?
+
+Season: season = Austral summer (summer) or Austral winter (winter)
+
+Temperature: treatment_new = acclimation temperature; 'wild' indicates fish were not acclimated and were 
+Mass of fish: bw_g = wet mass of fish (units g)
+
+Fish length: tl_cm = total length of fish (units cm)
+
+Heart rate: fhmax_peak = peak maximum heart rate (units beats per min), only measured during winter tests
+Metabolic rate
+
 - Will there be any other data that you need to find to help with your research question?
+
+Since our dataset only contains 75 observations, we think it will be helpful if we can find some other data in water temperatures and the amount or size of Hawkfish any other types of fish.
+
 - Very preliminary exploratory data analysis, including some summary statistics and visualizations, along with some explanation on how they help you learn more about your data. (You can add to these later as you work on your project.)
 - The data visualization(s) that you believe will be useful in exploring your question(s). (You can update these later as you work on your project.)
 
