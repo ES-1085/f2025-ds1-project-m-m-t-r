@@ -60,22 +60,23 @@ ggsave("fig_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
 
 ```
 
-### Plot 2: Scatter Plot: Body length vs. post-feeding energy use, colored by season
+### Plot 2: Scatter Plot: Treatment vs. post-feeding energy use, colored by season
 
-```{r scatter-body-energy-season}
+```{r scatter-temp-energy-season}
 
-body_energy_season <- heatwaves_coral_fish_clean |>
-  ggplot(aes(x = total_length, y = SDA_integrated, color = season)) +
+temp_energy_season <- heatwaves_coral_fish_clean |>
+  ggplot(aes(x = treatment_new, y = SDA_integrated, color = season)) +
   geom_point(alpha = 0.8, size = 3) +
+  scale_x_discrete(labels = function(x) ifelse(x == "wild", "wild", paste0(x, "°C"))) +
   labs(
-    title = "Body Length vs. SDA (by Season)",
-    subtitle = "SDA stands for specific dynamic action",
-    x = "Total Length (cm)",
+    title = "Temperature vs. SDA (by Season)",
+    subtitle = "SDA stands for specific dynamic action, which measured digestive costs",
+    x = "Temperature Treatment",
     y = "SDA Integrated"
   )
 
 # Save the plot
-ggsave("fig_body_energy_season_scatterplot.png", body_energy_season, width = 7, height = 5)
+ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, height = 5)
 ```
 
 #### Final Plot 1
