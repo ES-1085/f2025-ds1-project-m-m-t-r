@@ -4,8 +4,6 @@ author: "MMTR"
 output: github_document
 ---
 
-This document should contain a detailed account of the data clean up for your data and the design choices you are making for your plots. For instance you will want to document choices you've made that were intentional for your graphic, e.g. color you've chosen for the plot. Think of this document as a code script someone can follow to reproduce the data cleaning steps and graphics in your handout.
-
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
@@ -13,13 +11,29 @@ library(broom)
 
 ## Data Clean Up Steps for Overall Data
 
-### Step 1: _________
+### Step 1: Upload main dataset
 
-```{r}
-
+```{r upload-data}
+heatwaves_coral_fish <- read_csv("../data/VanWert_etal_2023_hawkfish.csv")
+glimpse(heatwaves_coral_fish)
 ```
 
-### Step 2: ________
+### Step 2: Change Variable Names
+
+```{r rename-variables}
+heatwaves_coral_fish <- heatwaves_coral_fish |>
+  rename(wet_mass = bw_g,
+         total_length = tl_cm,
+         standard_length = sl_cm,
+         corrected_max_metabolic_rate = mmr_corrected,
+         standard_metabolic_rate = smr_low10_all,
+         absolute_aerobic_scope = aas_corrected,
+         factorial_aerobic_scope = fas,
+         SDA_coeff = sda_coeff,
+         temp_of_arrhythmia = tarr,
+         peak_max_heart_rate = fhmax_peak,
+         temp_at_max_heart_rate = tpeak)
+```
 
 ## Plots
 
