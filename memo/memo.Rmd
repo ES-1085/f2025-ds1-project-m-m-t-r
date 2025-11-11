@@ -42,7 +42,7 @@ heatwaves_coral_fish_clean <- heatwaves_coral_fish |>
 ### Plot 1: Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR)
 
 
-```{r treatment-vs-MMR}
+```{r boxplot-treatment-vs-MMR}
 
 heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
   ggplot(aes(x = treatment_new, y = max_metabolic_rate)) +
@@ -62,19 +62,20 @@ ggsave("fig_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
 
 ### Plot 2: Scatter Plot: Body length vs. post-feeding energy use, colored by season
 
-```{r scatter}
+```{r scatter-body-energy-season}
 
-heatwaves_coral_fish |>
-  ggplot(aes(x = tl_cm, y = SDA_integrated, color = season)) +
-  geom_point(alpha = 0.8) +
+body_energy_season <- heatwaves_coral_fish_clean |>
+  ggplot(aes(x = total_length, y = SDA_integrated, color = season)) +
+  geom_point(alpha = 0.8, size = 3) +
   labs(
     title = "Body Length vs. SDA (by Season)",
+    subtitle = "SDA stands for specific dynamic action",
     x = "Total Length (cm)",
     y = "SDA Integrated"
   )
 
 # Save the plot
-ggsave("fig_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
+ggsave("fig_body_energy_season_scatterplot.png", body_energy_season, width = 7, height = 5)
 ```
 
 #### Final Plot 1
