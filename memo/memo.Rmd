@@ -1,6 +1,6 @@
 ---
 title: "Project memo"
-author: "Team name"
+author: "MMTR"
 output: github_document
 ---
 
