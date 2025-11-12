@@ -183,6 +183,12 @@ higher energy use in one season.
   help you learn more about your data. (You can add to these later as
   you work on your project.)
 
+The boxplot shows how metabolic rate (MMR) changes across heatwave
+treatments, helping identify which temperatures lead to higher energy
+use. The scatterplot shows how body size relates to energy use (SDA) and
+whether this relationship differs by season, revealing seasonal patterns
+in metabolism.
+
 ``` r
 heatwaves_coral_fish |>
   summarise(
@@ -246,3 +252,25 @@ heatwaves_coral_fish |>
     ## (`geom_point()`).
 
 ![](proposal_files/figure-gfm/visualizations-2.png)<!-- -->
+
+``` r
+# 3) Boxplot: Aerobic Scope Across Seasons 
+heatwaves_coral_fish |>
+  ggplot(aes(x = season, y = aas_corrected, fill = season)) +
+  geom_boxplot() +
+  labs(
+    title = "Aerobic Scope Across Seasons",
+    x = "Season",
+    y = "Absolute Aerobic Scope (mg O₂ kg⁻¹ min⁻¹)"
+  ) +
+  theme_classic(base_size = 14) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+```
+
+    ## Warning: Removed 25 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+![](proposal_files/figure-gfm/visualizations-3.png)<!-- -->

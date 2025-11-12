@@ -153,4 +153,19 @@ heatwaves_coral_fish |>
     y = "SDA Integrated"
   )
 
+# 3) Boxplot: Aerobic Scope Across Seasons 
+heatwaves_coral_fish |>
+  ggplot(aes(x = season, y = aas_corrected, fill = season)) +
+  geom_boxplot() +
+  labs(
+    title = "Aerobic Scope Across Seasons",
+    x = "Season",
+    y = "Absolute Aerobic Scope (mg O₂ kg⁻¹ min⁻¹)"
+  ) +
+  theme_classic(base_size = 14) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+
 ```
