@@ -79,6 +79,67 @@ temp_energy_season <- heatwaves_coral_fish_clean |>
 ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, height = 5)
 ```
 
+
+### Plot 3:Time graph, seasonal cycle of mettabolic rate
+```{r metabolic-rate-per-season}
+
+df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
+df$season <- factor(df$season, 
+                    levels = c("winter", "spring", "summer", "fall"))
+
+
+season_means <- df |>
+  group_by(season) |>
+  summarise(mean_mmr = mean(mmr_corrected, na.rm = TRUE))
+
+
+ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
+  geom_line(size = 1.2, color = "blue") +
+  geom_point(size = 4, color = "darkred") +
+  coord_polar() +
+  theme_minimal() +
+  labs(
+    title = "Seasonal Cycle of Mean Metabolic Rate",
+    x = "",
+    y = "Mean MMR (corrected)"
+  ) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5)
+   
+  )
+
+
+```
+### Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs metabolic rate
+
+```{r body-weight-mr-per-season}
+
+df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
+
+df$season <- factor(df$season, 
+                    levels = c("winter", "spring", "summer", "fall"))
+
+ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
+  geom_point(alpha = 0.8, size = 2) +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~ season, nrow = 1) +
+  theme_minimal() +
+  labs(
+    title = "Body Weight vs Metabolic Rate Across Seasons",
+    x = "Body Weight (g)",
+    y = "MMR (corrected)"
+  ) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5)
+
+  )
+
+```
+
+### Plot 4:
+
+
+
 #### Final Plot 1
 
 ```{r}
@@ -87,6 +148,11 @@ ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, 
 
 
 ### Plot 2: _________
+```{r}
+
+
+```
+
 
 ### Plot 3: ___________
 
