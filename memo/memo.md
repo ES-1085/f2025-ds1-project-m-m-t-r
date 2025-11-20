@@ -187,7 +187,28 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
 
 ![](memo_files/figure-gfm/body-weight-mr-per-season-1.png)<!-- -->
 
-### Plot 4:
+### Plot 5:Absolute Aerobic Scope vs Heatwave Treatment
+
+``` r
+aerobic_scope_treatment <- heatwaves_coral_fish_clean |>
+  ggplot(aes(x = treatment_new, y = absolute_aerobic_scope)) +
+  geom_boxplot(fill = "#9ECAE1") +
+  labs(
+    title = "Absolute Aerobic Scope Across Heatwave Treatments",
+    subtitle = "Lower aerobic scope indicates reduced energy available for activity",
+    x = "Heatwave Treatment",
+    y = "Absolute Aerobic Scope"
+  ) +
+  theme_classic()
+
+# Display the plot
+aerobic_scope_treatment
+```
+
+    ## Warning: Removed 25 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+![](memo_files/figure-gfm/aerobic_scope_heatwaves-1.png)<!-- -->
 
 #### Final Plot 1
 
