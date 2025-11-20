@@ -135,7 +135,7 @@ ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
   coord_polar() +
   theme_minimal() +
   labs(
-    title = "Seasonal Cycle of Mean Metabolic Rate",
+    title = "Seasonal Cycle of Mean Metabolic Rate For Hawkfish",
     x = "",
     y = "Mean MMR (corrected)"
   ) +
@@ -167,7 +167,7 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
   facet_wrap(~ season, nrow = 1) +
   theme_minimal() +
   labs(
-    title = "Body Weight vs Metabolic Rate Across Seasons",
+    title = "Body Weight vs Metabolic Rate Across Seasons for hawkfish",
     x = "Body Weight (g)",
     y = "MMR (corrected)"
   ) +
