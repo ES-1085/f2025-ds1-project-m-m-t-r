@@ -217,8 +217,9 @@ heatwaves_coral_fish |>
   geom_boxplot() +
   labs(
     title = "Aerobic Scope Across Seasons",
+    subtitle = "Lower aerobic scope indicates reduced energy available for activiity",
     x = "Season",
-    y = "Absolute Aerobic Scope (mg O₂ kg⁻¹ min⁻¹)"
+    y = "Absolute Aerobic Scope"
   ) +
   theme_classic(base_size = 14) +
   theme(
