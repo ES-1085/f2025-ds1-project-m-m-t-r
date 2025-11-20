@@ -212,8 +212,8 @@ aerobic_scope_treatment
 6: Boxplot: Aerobic Scope Across Seasons
 
 ``` r
-heatwaves_coral_fish |>
-  ggplot(aes(x = season, y = aas_corrected, fill = season)) +
+heatwaves_coral_fish_clean |>
+  ggplot(aes(x = season, y = absolute_aerobic_scope, fill = season)) +
   geom_boxplot() +
   labs(
     title = "Aerobic Scope Across Seasons",
