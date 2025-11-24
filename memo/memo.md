@@ -74,7 +74,7 @@ heatwaves_coral_fish_clean <- heatwaves_coral_fish |>
 
 ## Plots
 
-### Plot 1: Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR)
+### Plot 1: Boxplot: Heatwave treatment vs maximum metabolic rate (MMR)
 
 ``` r
 heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
@@ -95,7 +95,7 @@ ggsave("fig_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
     ## Warning: Removed 11 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
-### Plot 2: Scatter Plot: Treatment vs. post-feeding energy use, colored by season
+### Plot 2: Scatter Plot: Treatment vs post-feeding energy use, colored by season
 
 ``` r
 temp_energy_season <- heatwaves_coral_fish_clean |>
@@ -151,8 +151,9 @@ ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
     ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
     ## generated.
 
-![](memo_files/figure-gfm/metabolic-rate-per-season-1.png)<!-- --> \###
-Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs
+![](memo_files/figure-gfm/metabolic-rate-per-season-1.png)<!-- --> \
+
+### Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs
 metabolic rate
 
 ``` r
@@ -182,8 +183,6 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
     ## Warning: Removed 11 rows containing non-finite outside the scale range
     ## (`stat_smooth()`).
 
-    ## Warning: Removed 11 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
 
 ![](memo_files/figure-gfm/body-weight-mr-per-season-1.png)<!-- -->
 
@@ -209,6 +208,30 @@ aerobic_scope_treatment
     ## (`stat_boxplot()`).
 
 ![](memo_files/figure-gfm/aerobic_scope_heatwaves-1.png)<!-- -->
+
+### Plot 6: Boxplot: Aerobic Scope Across Seasons
+
+``` r
+heatwaves_coral_fish_clean |>
+  ggplot(aes(x = season, y = absolute_aerobic_scope, fill = season)) +
+  geom_boxplot() +
+  labs(
+    title = "Aerobic Scope Across Seasons",
+    subtitle = "Lower aerobic scope indicates reduced energy available for activiity",
+    x = "Season",
+    y = "Absolute Aerobic Scope"
+  ) +
+  theme_classic(base_size = 14) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+```
+
+    ## Warning: Removed 25 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+![](memo_files/figure-gfm/Aerobic_Scope_Seasons-1.png)<!-- -->
 
 #### Final Plot 1
 
