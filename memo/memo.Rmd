@@ -80,7 +80,7 @@ ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, 
 ```
 
 
-### Plot 3:Time graph, seasonal cycle of mettabolic rate
+### Plot 3:Time graph, seasonal cycle of metabolic rate
 ```{r metabolic-rate-per-season}
 
 df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")

@@ -1,17 +1,18 @@
-Project title
+Impact of Heatwaves on the Arceye Hawkfish
 ================
-by Team name
+by Tong Ning, Miriam Bergeron, Ryan Gleason, and Moreblessing Banda
 
 ## Summary
 
-Write-up of your project and findings go here. Think of this as the text
-of your handout. The length should be roughly 5 minutes when read
-out loud. Although pacing varies, a 5-minute speech is roughly 750
-words. 
+The study focused on the effect of heatwaves on coral reef fish. The study was conducted by Van Wert et al. and was published on July 15, 2024. The Hawkfish were collected in Mo'orea, French Polynesia in 2019 during the winter and 2022 during the summer. They studied how marine heatwaves impacted the performance and thermal tolerance of the arceye hawkfish, which is a tropical predatory fish. The purpose of our analysis of this study was to understand the impact that heat waves have on arceye hawkfish and their functioning. With that information, we were able to comprehend the relation between ocean temperatures and the performance of arceye hawkfish, and theorize the larger impact of climate change on marine populations. 
 
-Your results with proper output and
-graphics go in your handout, this space is for a brief summary of
-your project.
+## Methods
+
+The researchers used five temperature treatments (27, 28, 29, 31, or 33°C) for one week to test hawkfish’s acclimation ability, which they measured by metabolic performance metrics, including maximum metabolic rate (MMR), standard metabolic rate (SMR), and costs of digestion (specific dynamic action, SDA), using respirometry chambers. A subset of fish and wild fish were tested for thermal tolerance using an acute cardiac thermal tolerance test. The metabolic data were processed in R and the heart rate data were processed in LabChart.
+
+## Analysis
+
+## Conclusions
 
 ## Handout
 

@@ -208,29 +208,7 @@ aerobic_scope_treatment
     ## Warning: Removed 25 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
-![](memo_files/figure-gfm/aerobic_scope_heatwaves-1.png)<!-- --> \#Plot
-6: Boxplot: Aerobic Scope Across Seasons
-
-``` r
-heatwaves_coral_fish |>
-  ggplot(aes(x = season, y = aas_corrected, fill = season)) +
-  geom_boxplot() +
-  labs(
-    title = "Aerobic Scope Across Seasons",
-    x = "Season",
-    y = "Absolute Aerobic Scope (mg O₂ kg⁻¹ min⁻¹)"
-  ) +
-  theme_classic(base_size = 14) +
-  theme(
-    legend.position = "none",
-    plot.title = element_text(face = "bold", hjust = 0.5)
-  )
-```
-
-    ## Warning: Removed 25 rows containing non-finite outside the scale range
-    ## (`stat_boxplot()`).
-
-![](memo_files/figure-gfm/Aerobic_Scope_Seasons-1.png)<!-- -->
+![](memo_files/figure-gfm/aerobic_scope_heatwaves-1.png)<!-- -->
 
 #### Final Plot 1
 
