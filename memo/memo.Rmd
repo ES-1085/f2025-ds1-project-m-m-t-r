@@ -45,12 +45,13 @@ heatwaves_coral_fish_clean <- heatwaves_coral_fish |>
 ```{r boxplot-treatment-vs-MMR}
 
 heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
+  filter(treatment_new != "wild") |>
   ggplot(aes(x = treatment_new, y = max_metabolic_rate)) +
   geom_boxplot(fill = "#6BAED6") +
-  scale_x_discrete(labels = function(x) ifelse(x == "wild", "wild", paste0(x, "°C"))) +
+  scale_x_discrete(labels = function(x) paste0(x, "°C")) +
   labs(
     title = "Maximum Metabolic Rate by Heatwave Treatment",
-    subtitle = "“wild” is the control group (no heatwave)",
+    subtitle = "Fish MMR is lowest at 28°C heatwaves and peaks at 31°C",
     x = "Treatment (Heatwave Temperature)",
     y = "Maximum Metabolic Rate (MMR)"
   )
@@ -65,14 +66,15 @@ ggsave("fig_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
 ```{r scatter-temp-energy-season}
 
 temp_energy_season <- heatwaves_coral_fish_clean |>
+  filter(treatment_new != "wild") |>
   ggplot(aes(x = treatment_new, y = SDA_integrated, color = season)) +
   geom_point(alpha = 0.8, size = 3) +
   scale_x_discrete(labels = function(x) ifelse(x == "wild", "wild", paste0(x, "°C"))) +
   labs(
     title = "Temperature vs. SDA (by Season)",
-    subtitle = "SDA stands for specific dynamic action, which measured digestive costs",
+    subtitle = "Warmer summer temperatures make digestion more energetically costly",
     x = "Temperature Treatment",
-    y = "SDA Integrated"
+    y = "SDA"
   )
 
 # Save the plot
