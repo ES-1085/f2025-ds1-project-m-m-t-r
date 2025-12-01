@@ -192,6 +192,14 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
 
 ### Plot 5:Absolute Aerobic Scope vs Heatwave Treatment
 
+\#What is Absolute Aerobic Scope: This is the amount of energy an
+organism has for activites outside of basic survival. It is calculated
+by difference between an organism’s maximum metabolic rate and its
+standard metabolic rate. A higher absolute aerobic scope means an
+organism has more energy to available for movement, feeding, growth, or
+coping with stress. In our case a higher aerobic scope means the
+hawkfish are better able to deal with the heatwave treatments.
+
 \#Alt Text: Horizontal Box plot that dipicts the absolute aerobic scope
 for fish exposed to heatwave treatments of 27°C, 28°C, 29°C, 31°C, and
 33°C, separated by summer (pink) and winter (teal) seasons. Winter fish
