@@ -227,7 +227,13 @@ aerobic_scope_treatment
     ## (`stat_boxplot()`).
 
 ![](memo_files/figure-gfm/aerobic_scope_heatwaves-1.png)<!-- --> \#Plot
-6: Boxplot: Aerobic Scope Across Seasons
+6: Boxplot: Aerobic Scope Across Seasons \#Alt Text: Scatterplot that
+compares absolute aerobic scope between summer and winter hawkfish.
+Summer fish (pink points) show values mostly between 4 and 14. Winter
+fish (teal points) show higher overall aerobic scope with points ranging
+from about 7 to 20. This plot makes it clear that Winter fish gerneally
+have higher aerobic scope during this time period as opposed to summer
+fish.
 
 ``` r
 heatwaves_coral_fish_clean |>
