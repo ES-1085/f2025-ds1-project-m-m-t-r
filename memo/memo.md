@@ -192,6 +192,16 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
 
 ### Plot 5:Absolute Aerobic Scope vs Heatwave Treatment
 
+\#Alt Text: Horizontal Box plot that dipicts the absolute aerobic scope
+for fish exposed to heatwave treatments of 27°C, 28°C, 29°C, 31°C, and
+33°C, separated by summer (pink) and winter (teal) seasons. Winter fish
+appear to have a higher aerobic scope compared to the summer fish. This
+means that they are able to handle the heatwave treatments better
+becuase they have more energy during the winter. The plot also shows
+among each season as the treatments get hotter the aerobic scope gets
+lower indicating that the harsher the heat treatment the lower the
+aerobic scope.
+
 ``` r
 aerobic_scope_treatment <- heatwaves_coral_fish_clean |>
   filter(treatment_new != "wild") |>
