@@ -141,19 +141,26 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
 
 ### Plot 5:Absolute Aerobic Scope vs Heatwave Treatment
 ```{r aerobic_scope_heatwaves}
+
 aerobic_scope_treatment <- heatwaves_coral_fish_clean |>
-  ggplot(aes(x = treatment_new, y = absolute_aerobic_scope)) +
-  geom_boxplot(fill = "#9ECAE1") +
+  filter(treatment_new != "wild") |>
+  mutate(treatment_new = factor(treatment_new,
+                                levels = c("27", "28", "29", "31", "33"))) |>
+  ggplot(aes(x = treatment_new,
+             y = absolute_aerobic_scope,
+             fill = season)) +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
   labs(
     title = "Absolute Aerobic Scope Across Heatwave Treatments",
     subtitle = "Lower aerobic scope indicates reduced energy available for activity",
-    x = "Heatwave Treatment",
-    y = "Absolute Aerobic Scope"
+    x = "Heatwave Treatment (°C)",
+    y = "Absolute Aerobic Scope",
+    fill = "Season"
   ) +
   theme_classic()
 
-# Display the plot
 aerobic_scope_treatment
+
 ```
 #Plot 6:  Boxplot: Aerobic Scope Across Seasons 
 ```{r Aerobic_Scope_Seasons}
@@ -163,6 +170,21 @@ heatwaves_coral_fish_clean |>
   labs(
     title = "Aerobic Scope Across Seasons",
     subtitle = "Lower aerobic scope indicates reduced energy available for activiity",
+    x = "Season",
+    y = "Absolute Aerobic Scope"
+  ) +
+  theme_classic(base_size = 14) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+
+heatwaves_coral_fish_clean |>
+  ggplot(aes(x = season, y = absolute_aerobic_scope, color = season)) +
+  geom_jitter(width = 0.15, size = 2, alpha = 0.7) +
+  labs(
+    title = "Aerobic Scope Across Seasons",
+    subtitle = "Lower aerobic scope indicates reduced energy available for activity",
     x = "Season",
     y = "Absolute Aerobic Scope"
   ) +

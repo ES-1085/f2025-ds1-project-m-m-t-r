@@ -194,21 +194,26 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
 
 ``` r
 aerobic_scope_treatment <- heatwaves_coral_fish_clean |>
-  ggplot(aes(x = treatment_new, y = absolute_aerobic_scope)) +
-  geom_boxplot(fill = "#9ECAE1") +
+  filter(treatment_new != "wild") |>
+  mutate(treatment_new = factor(treatment_new,
+                                levels = c("27", "28", "29", "31", "33"))) |>
+  ggplot(aes(x = treatment_new,
+             y = absolute_aerobic_scope,
+             fill = season)) +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
   labs(
     title = "Absolute Aerobic Scope Across Heatwave Treatments",
     subtitle = "Lower aerobic scope indicates reduced energy available for activity",
-    x = "Heatwave Treatment",
-    y = "Absolute Aerobic Scope"
+    x = "Heatwave Treatment (°C)",
+    y = "Absolute Aerobic Scope",
+    fill = "Season"
   ) +
   theme_classic()
 
-# Display the plot
 aerobic_scope_treatment
 ```
 
-    ## Warning: Removed 25 rows containing non-finite outside the scale range
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
 ![](memo_files/figure-gfm/aerobic_scope_heatwaves-1.png)<!-- --> \#Plot
@@ -235,6 +240,28 @@ heatwaves_coral_fish_clean |>
     ## (`stat_boxplot()`).
 
 ![](memo_files/figure-gfm/Aerobic_Scope_Seasons-1.png)<!-- -->
+
+``` r
+heatwaves_coral_fish_clean |>
+  ggplot(aes(x = season, y = absolute_aerobic_scope, color = season)) +
+  geom_jitter(width = 0.15, size = 2, alpha = 0.7) +
+  labs(
+    title = "Aerobic Scope Across Seasons",
+    subtitle = "Lower aerobic scope indicates reduced energy available for activity",
+    x = "Season",
+    y = "Absolute Aerobic Scope"
+  ) +
+  theme_classic(base_size = 14) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+```
+
+    ## Warning: Removed 25 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](memo_files/figure-gfm/Aerobic_Scope_Seasons-2.png)<!-- -->
 
 #### Final Plot 1
 
