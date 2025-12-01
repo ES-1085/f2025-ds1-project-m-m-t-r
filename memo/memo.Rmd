@@ -125,6 +125,7 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
   geom_point(alpha = 0.8, size = 2) +
   geom_smooth(method = "lm", se = FALSE) +
   facet_wrap(~ season, nrow = 1) +
+  xlim(0,15)+
   theme_minimal() +
   labs(
     title = "Body Weight vs Metabolic Rate Across Seasons for hawkfish",

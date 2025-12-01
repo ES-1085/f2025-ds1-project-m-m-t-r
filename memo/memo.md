@@ -74,16 +74,17 @@ heatwaves_coral_fish_clean <- heatwaves_coral_fish |>
 
 ## Plots
 
-### Plot 1: Boxplot: Heatwave treatment vs maximum metabolic rate (MMR)
+### Plot 1: Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR)
 
 ``` r
 heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
+  filter(treatment_new != "wild") |>
   ggplot(aes(x = treatment_new, y = max_metabolic_rate)) +
   geom_boxplot(fill = "#6BAED6") +
-  scale_x_discrete(labels = function(x) ifelse(x == "wild", "wild", paste0(x, "°C"))) +
+  scale_x_discrete(labels = function(x) paste0(x, "°C")) +
   labs(
     title = "Maximum Metabolic Rate by Heatwave Treatment",
-    subtitle = "“wild” is the control group (no heatwave)",
+    subtitle = "Fish MMR is lowest at 28°C heatwaves and peaks at 31°C",
     x = "Treatment (Heatwave Temperature)",
     y = "Maximum Metabolic Rate (MMR)"
   )
@@ -92,31 +93,32 @@ heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
 ggsave("fig_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
 ```
 
-    ## Warning: Removed 11 rows containing non-finite outside the scale range
+    ## Warning: Removed 3 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
-### Plot 2: Scatter Plot: Treatment vs post-feeding energy use, colored by season
+### Plot 2: Scatter Plot: Treatment vs. post-feeding energy use, colored by season
 
 ``` r
 temp_energy_season <- heatwaves_coral_fish_clean |>
+  filter(treatment_new != "wild") |>
   ggplot(aes(x = treatment_new, y = SDA_integrated, color = season)) +
   geom_point(alpha = 0.8, size = 3) +
   scale_x_discrete(labels = function(x) ifelse(x == "wild", "wild", paste0(x, "°C"))) +
   labs(
     title = "Temperature vs. SDA (by Season)",
-    subtitle = "SDA stands for specific dynamic action, which measured digestive costs",
+    subtitle = "Warmer summer temperatures make digestion more energetically costly",
     x = "Temperature Treatment",
-    y = "SDA Integrated"
+    y = "SDA"
   )
 
 # Save the plot
 ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, height = 5)
 ```
 
-    ## Warning: Removed 20 rows containing missing values or values outside the scale range
+    ## Warning: Removed 12 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-### Plot 3:Time graph, seasonal cycle of mettabolic rate
+### Plot 3:Time graph, seasonal cycle of metabolic rate
 
 ``` r
 df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
@@ -151,9 +153,8 @@ ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
     ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
     ## generated.
 
-![](memo_files/figure-gfm/metabolic-rate-per-season-1.png)<!-- --> \
-
-### Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs
+![](memo_files/figure-gfm/metabolic-rate-per-season-1.png)<!-- --> \###
+Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs
 metabolic rate
 
 ``` r
@@ -166,6 +167,7 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
   geom_point(alpha = 0.8, size = 2) +
   geom_smooth(method = "lm", se = FALSE) +
   facet_wrap(~ season, nrow = 1) +
+  xlim(0,15)+
   theme_minimal() +
   labs(
     title = "Body Weight vs Metabolic Rate Across Seasons for hawkfish",
@@ -180,9 +182,11 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-    ## Warning: Removed 11 rows containing non-finite outside the scale range
+    ## Warning: Removed 12 rows containing non-finite outside the scale range
     ## (`stat_smooth()`).
 
+    ## Warning: Removed 12 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
 
 ![](memo_files/figure-gfm/body-weight-mr-per-season-1.png)<!-- -->
 
@@ -207,9 +211,8 @@ aerobic_scope_treatment
     ## Warning: Removed 25 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
-![](memo_files/figure-gfm/aerobic_scope_heatwaves-1.png)<!-- -->
-
-### Plot 6: Boxplot: Aerobic Scope Across Seasons
+![](memo_files/figure-gfm/aerobic_scope_heatwaves-1.png)<!-- --> \#Plot
+6: Boxplot: Aerobic Scope Across Seasons
 
 ``` r
 heatwaves_coral_fish_clean |>
