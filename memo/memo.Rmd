@@ -87,7 +87,7 @@ ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, 
 ```{r metabolic-rate-per-season}
 
 df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
-df$season <- factor(df$season, 
+seasonal_cycle <- df$season <- factor(df$season, 
                     levels = c("winter", "spring", "summer", "fall"))
 
 
@@ -112,7 +112,7 @@ ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
   )
 
 #save plot
-ggsave("fig_polar_plot_metabolic_rate_per_season.png", temp_energy_season, width = 7, height = 5)
+ggsave("fig_polar_plot_metabolic_rate_per_season.png", seasonal_cycle, width = 7, height = 5)
 
 
 ```
@@ -120,12 +120,8 @@ ggsave("fig_polar_plot_metabolic_rate_per_season.png", temp_energy_season, width
 
 ```{r body-weight-mr-per-season}
 
-df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
-
-df$season <- factor(df$season, 
-                    levels = c("winter", "spring", "summer", "fall"))
-
-ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
+energy_weight_season <- heatwaves_coral_fish_clean |>
+  ggplot(aes(x = wet_mass, y = max_metabolic_rate, color = season)) +
   geom_point(alpha = 0.8, size = 2) +
   geom_smooth(method = "lm", se = FALSE) +
   facet_wrap(~ season, nrow = 1) +
@@ -137,11 +133,12 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
     y = "MMR (corrected)"
   ) +
   theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5)
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5)
 
   )
 #save plot 
-ggsave("fig_body_weight_and_metabolic_rate.png", temp_energy_season, width = 7, height = 5)
+ggsave("fig_body_weight_and_metabolic_rate_lineplot.png", energy_weight_season, width = 8, height = 5)
+
 ```
 
 ### Plot 5:Absolute Aerobic Scope vs Heatwave Treatment
