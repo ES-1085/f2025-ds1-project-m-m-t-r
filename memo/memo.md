@@ -79,18 +79,19 @@ heatwaves_coral_fish_clean <- heatwaves_coral_fish |>
 ``` r
 heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
   filter(treatment_new != "wild") |>
-  ggplot(aes(x = treatment_new, y = max_metabolic_rate)) +
-  geom_boxplot(fill = "#6BAED6") +
+  ggplot(aes(x = treatment_new, y = max_metabolic_rate, fill = season)) +
+  geom_boxplot() +
   scale_x_discrete(labels = function(x) paste0(x, "°C")) +
   labs(
     title = "Maximum Metabolic Rate by Heatwave Treatment",
     subtitle = "Fish MMR is lowest at 28°C heatwaves and peaks at 31°C",
     x = "Treatment (Heatwave Temperature)",
-    y = "Maximum Metabolic Rate (MMR)"
+    y = "Maximum Metabolic Rate (MMR)",
+    fill = "Season"
   )
 
 # Save the plot
-ggsave("fig_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
+ggsave("fig_mmr_vs_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
 ```
 
     ## Warning: Removed 3 rows containing non-finite outside the scale range
@@ -153,9 +154,17 @@ ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
     ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
     ## generated.
 
-![](memo_files/figure-gfm/metabolic-rate-per-season-1.png)<!-- --> \###
-Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs
-metabolic rate
+![](memo_files/figure-gfm/metabolic-rate-per-season-1.png)<!-- -->
+
+``` r
+#save plot
+ggsave("fig_polar_plot_metabolic_rate_per_season.png", temp_energy_season, width = 7, height = 5)
+```
+
+    ## Warning: Removed 12 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+### Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs metabolic rate
 
 ``` r
 df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
@@ -170,7 +179,7 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
   xlim(0,15)+
   theme_minimal() +
   labs(
-    title = "Body Weight vs Metabolic Rate Across Seasons for hawkfish",
+    title = "Body Weight and Metabolic Rate Across Seasons for hawkfish",
     x = "Body Weight (g)",
     y = "MMR (corrected)"
   ) +
@@ -189,6 +198,14 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
     ## (`geom_point()`).
 
 ![](memo_files/figure-gfm/body-weight-mr-per-season-1.png)<!-- -->
+
+``` r
+#save plot 
+ggsave("fig_body_weight_and_metabolic_rate.png", temp_energy_season, width = 7, height = 5)
+```
+
+    ## Warning: Removed 12 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
 
 ### Plot 5:Absolute Aerobic Scope vs Heatwave Treatment
 
@@ -219,10 +236,11 @@ aerobic_scope_treatment <- heatwaves_coral_fish_clean |>
              y = absolute_aerobic_scope,
              fill = season)) +
   geom_boxplot(position = position_dodge(width = 0.8)) +
+  scale_x_discrete(labels = function(x) paste0(x, "°C")) +
   labs(
     title = "Absolute Aerobic Scope Across Heatwave Treatments",
     subtitle = "Lower aerobic scope indicates reduced energy available for activity",
-    x = "Heatwave Treatment (°C)",
+    x = "Treatment (Heatwave Temperature)",
     y = "Absolute Aerobic Scope",
     fill = "Season"
   ) +
@@ -234,9 +252,18 @@ aerobic_scope_treatment
     ## Warning: Removed 17 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
-![](memo_files/figure-gfm/aerobic_scope_heatwaves-1.png)<!-- --> \#Plot
-6: Boxplot: Aerobic Scope Across Seasons \#Alt Text: Scatterplot that
-compares absolute aerobic scope between summer and winter hawkfish.
+![](memo_files/figure-gfm/aerobic_scope_heatwaves-1.png)<!-- -->
+
+``` r
+# Save the plot
+ggsave("fig_aerobic_vs_heatwave_boxplot.png", aerobic_scope_treatment, width = 7, height = 5)
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+\#Plot 6: Boxplot: Aerobic Scope Across Seasons \#Alt Text: Scatterplot
+that compares absolute aerobic scope between summer and winter hawkfish.
 Summer fish (pink points) show values mostly between 4 and 14. Winter
 fish (teal points) show higher overall aerobic scope with points ranging
 from about 7 to 20. This plot makes it clear that Winter fish gerneally

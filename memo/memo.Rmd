@@ -111,6 +111,9 @@ ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
    
   )
 
+#save plot
+ggsave("fig_polar_plot_metabolic_rate_per_season.png", temp_energy_season, width = 7, height = 5)
+
 
 ```
 ### Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs metabolic rate
@@ -129,7 +132,7 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
   xlim(0,15)+
   theme_minimal() +
   labs(
-    title = "Body Weight vs Metabolic Rate Across Seasons for hawkfish",
+    title = "Body Weight and Metabolic Rate Across Seasons for hawkfish",
     x = "Body Weight (g)",
     y = "MMR (corrected)"
   ) +
@@ -137,7 +140,8 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
     plot.title = element_text(size = 16, face = "bold", hjust = 0.5)
 
   )
-
+#save plot 
+ggsave("fig_body_weight_and_metabolic_rate.png", temp_energy_season, width = 7, height = 5)
 ```
 
 ### Plot 5:Absolute Aerobic Scope vs Heatwave Treatment
