@@ -133,7 +133,7 @@ energy_weight_season <- heatwaves_coral_fish_clean |>
     y = "MMR (corrected)"
   ) +
   theme(
-    plot.title = element_text(size = 14, face = "bold", hjust = 0.5)
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5), legend.position = "none"
 
   )
 #save plot 
