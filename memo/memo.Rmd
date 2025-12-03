@@ -158,7 +158,7 @@ aerobic_scope_treatment <- heatwaves_coral_fish_clean |>
   scale_x_discrete(labels = function(x) paste0(x, "°C")) +
   labs(
     title = "Absolute Aerobic Scope Across Heatwave Treatments",
-    subtitle = "Lower aerobic scope indicates reduced energy available for activity",
+    subtitle = "Comparison of absolute aerobic scope across treatment temperatures, grouped by season",
     x = "Treatment (Heatwave Temperature)",
     y = "Absolute Aerobic Scope",
     fill = "Season"
