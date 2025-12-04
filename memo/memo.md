@@ -201,7 +201,7 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
 
 ``` r
 #save plot 
-ggsave("fig_body_weight_and_metabolic_rate.png", temp_energy_season, width = 7, height = 5)
+ggsave("fig_body_weight_and_metabolic_rate_across_2_seasons.png", temp_energy_season, width = 8, height = 5)
 ```
 
     ## Warning: Removed 12 rows containing missing values or values outside the scale range
