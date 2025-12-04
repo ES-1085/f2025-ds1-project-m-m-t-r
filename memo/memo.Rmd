@@ -206,8 +206,8 @@ heatwaves_coral_fish_clean |>
 ```
 
 
-# Plot 7: Absolute Aerobic Scope vs Maximum Metabolic Rate
-# What is Absolute Aerobic Scope: Absolute Aerobic scope is the difference between an animal's macimum metabolic rate and its standard metabolic rate (lowest amount of energy needed to perform most basic functions)
+# Plot 7: Relationship between Metabolic Rate and Aerobic Scope
+# What is Absolute Aerobic Scope: Absolute Aerobic scope is the difference between an animal's maximum metabolic rate and its standard metabolic rate (lowest amount of energy needed to perform most basic functions)
 # What is Maximum Metabolic Rate: highest rate of energy expenditure an animal can sustain; often measured by the oxygen consumption during sustained, vigorous activity
 
 #Alt Text: Scatterplot that depicts the absolute aerobic scope on the y-axis and the maximum metabolic rate on the x-axis for all treatments, both winter and summer. The season is depicted in pink for summer and blue for winter. There seems to be a positive, linear relationship between maximum metabolic rate and absolute aerobic scope, such that as the maximum metabolic rate increases, so does the aerobic scope. 
