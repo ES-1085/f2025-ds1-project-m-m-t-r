@@ -39,7 +39,7 @@ heatwaves_coral_fish_clean <- heatwaves_coral_fish |>
 
 ## Plots
 
-### Plot 1: Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR)
+### Plot 1: Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR), colored by season
 
 
 ```{r boxplot-treatment-vs-MMR}
@@ -87,17 +87,12 @@ ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, 
 ### Plot 3:Time graph, seasonal cycle of metabolic rate
 ```{r metabolic-rate-per-season}
 
-df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
-seasonal_cycle <- df$season <- factor(df$season, 
-                    levels = c("winter", "spring", "summer", "fall"))
-
-
-season_means <- df |>
+season_means <- heatwaves_coral_fish_clean |>
   group_by(season) |>
-  summarise(mean_mmr = mean(mmr_corrected, na.rm = TRUE))
+  summarise(mean_mmr = mean(max_metabolic_rate, na.rm = TRUE))
 
 
-ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
+seasonal_cycle <- ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
   geom_line(size = 1.2, color = "blue") +
   geom_point(size = 4, color = "darkred") +
   coord_polar() +
