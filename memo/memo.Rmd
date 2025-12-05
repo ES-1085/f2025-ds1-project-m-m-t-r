@@ -275,7 +275,7 @@ ggsave("fig_aerobic_vs_heatwave_boxplot.png", aerobic_scope_treatment, width = 7
 
 ```
 
-### Final Plot 3: Time faceted: Seasonal graph looking an body weight vs metabolic rate
+### Final Plot 3: Time faceted: Seasonal graph looking at body weight vs metabolic rate
 
 ```{r body-weight-mr-per-season, fig.alt= "A two-panel scatterplot that compares the body weight and metabolic rate (MMR) of hawkfish in the summer and winter. Winter data is displayed on the left panel, with red dots distributed between approximately 8–22 MMR and 0–12 grams body weight. A slight negative correlation between body weight and metabolic rate is shown by a shallow red trendline that slopes downward. Summer data is displayed in the right panel with blue points between around 8–20 MMR and 2–15 grams body weight. The summer trendline exhibits a higher negative correlation and slopes downward much more sharply. Summertime points are more widely dispersed, suggesting that the metabolic rate varies more during heatwaves. Every panel has the same axes."}
 
