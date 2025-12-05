@@ -39,15 +39,15 @@ heatwaves_coral_fish_clean <- heatwaves_coral_fish |>
 
 ## Plots
 
-### Plot 1: Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR)
+### Plot 1: Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR), colored by season
 
 
-```{r boxplot-treatment-vs-MMR}
+```{r boxplot-treatment-vs-MMR, fig.alt= "A boxplot of maximum metabolic rate by heatwave temperature, colored by season. The box shows the fish's maximum metabolic rate is lowest at 28 °C heatwaves and highest at 31 °C."}
 
 heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
   filter(treatment_new != "wild") |>
   ggplot(aes(x = treatment_new, y = max_metabolic_rate, fill = season)) +
-  geom_boxplot() +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
   scale_x_discrete(labels = function(x) paste0(x, "°C")) +
   labs(
     title = "Maximum Metabolic Rate by Heatwave Treatment",
@@ -55,7 +55,8 @@ heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
     x = "Treatment (Heatwave Temperature)",
     y = "Maximum Metabolic Rate (MMR)",
     fill = "Season"
-  )
+  ) +
+  theme_classic()
 
 # Save the plot
 ggsave("fig_mmr_vs_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
@@ -87,19 +88,14 @@ temp_energy_season
 
 
 ### Plot 3:Time graph, seasonal cycle of metabolic rate
-```{r metabolic-rate-per-season}
+```{r metabolic-rate-per-season }
 
-df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
-seasonal_cycle <- df$season <- factor(df$season, 
-                    levels = c("winter", "spring", "summer", "fall"))
-
-
-season_means <- df |>
+season_means <- heatwaves_coral_fish_clean |>
   group_by(season) |>
-  summarise(mean_mmr = mean(mmr_corrected, na.rm = TRUE))
+  summarise(mean_mmr = mean(max_metabolic_rate, na.rm = TRUE))
 
 
-ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
+seasonal_cycle <- ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
   geom_line(size = 1.2, color = "blue") +
   geom_point(size = 4, color = "darkred") +
   coord_polar() +
@@ -121,7 +117,7 @@ ggsave("fig_polar_plot_metabolic_rate_per_season.png", seasonal_cycle, width = 7
 ```
 ### Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs metabolic rate
 
-```{r body-weight-mr-per-season}
+```{r body-weight-mr-per-season, fig.alt= "A two-panel scatterplot that compares the body weight and metabolic rate (MMR) of hawkfish in the summer and winter. Winter data is displayed on the left panel, with red dots distributed between approximately 8–22 MMR and 0–12 grams body weight. A slight negative correlation between body weight and metabolic rate is shown by a shallow red trendline that slopes downward. Summer data is displayed in the right panel with blue points between around 8–20 MMR and 2–15 grams body weight. The summer trendline exhibits a higher negative correlation and slopes downward much more sharply. Summertime points are more widely dispersed, suggesting that the metabolic rate varies more during heatwaves. Every panel has the same axes."}
 
 energy_weight_season <- heatwaves_coral_fish_clean |>
   ggplot(aes(x = wet_mass, y = max_metabolic_rate, color = season)) +
@@ -210,6 +206,7 @@ heatwaves_coral_fish_clean |>
 ```
 
 
+<<<<<<< HEAD
 # Plot 7: Relationship between Metabolic Rate and Aerobic Scope
 # What is Absolute Aerobic Scope: Absolute Aerobic scope is the difference between an animal's maximum metabolic rate and its standard metabolic rate (lowest amount of energy needed to perform most basic functions)
 # What is Maximum Metabolic Rate: highest rate of energy expenditure an animal can sustain; often measured by the oxygen consumption during sustained, vigorous activity
@@ -226,6 +223,8 @@ ggplot(VanWert_etal_2023_hawkfish, mapping = aes(x = mmr_corrected, y = aas_corr
   )
 ```
 
+=======
+>>>>>>> 7f072c96b07250d3ab1dabf51e21105841d7aa14
 
 
 

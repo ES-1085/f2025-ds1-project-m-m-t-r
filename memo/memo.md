@@ -74,13 +74,13 @@ heatwaves_coral_fish_clean <- heatwaves_coral_fish |>
 
 ## Plots
 
-### Plot 1: Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR)
+### Plot 1: Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR), colored by season
 
 ``` r
 heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
   filter(treatment_new != "wild") |>
   ggplot(aes(x = treatment_new, y = max_metabolic_rate, fill = season)) +
-  geom_boxplot() +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
   scale_x_discrete(labels = function(x) paste0(x, "°C")) +
   labs(
     title = "Maximum Metabolic Rate by Heatwave Treatment",
@@ -88,7 +88,8 @@ heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
     x = "Treatment (Heatwave Temperature)",
     y = "Maximum Metabolic Rate (MMR)",
     fill = "Season"
-  )
+  ) +
+  theme_classic()
 
 # Save the plot
 ggsave("fig_mmr_vs_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
@@ -122,17 +123,12 @@ ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, 
 ### Plot 3:Time graph, seasonal cycle of metabolic rate
 
 ``` r
-df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
-df$season <- factor(df$season, 
-                    levels = c("winter", "spring", "summer", "fall"))
-
-
-season_means <- df |>
+season_means <- heatwaves_coral_fish_clean |>
   group_by(season) |>
-  summarise(mean_mmr = mean(mmr_corrected, na.rm = TRUE))
+  summarise(mean_mmr = mean(max_metabolic_rate, na.rm = TRUE))
 
 
-ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
+seasonal_cycle <- ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
   geom_line(size = 1.2, color = "blue") +
   geom_point(size = 4, color = "darkred") +
   coord_polar() +
@@ -154,25 +150,16 @@ ggplot(season_means, aes(x = season, y = mean_mmr, group = 1)) +
     ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
     ## generated.
 
-![](memo_files/figure-gfm/metabolic-rate-per-season-1.png)<!-- -->
-
 ``` r
 #save plot
-ggsave("fig_polar_plot_metabolic_rate_per_season.png", temp_energy_season, width = 7, height = 5)
+ggsave("fig_polar_plot_metabolic_rate_per_season.png", seasonal_cycle, width = 7, height = 5)
 ```
 
-    ## Warning: Removed 12 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
-
-### Plot 4 draft: Time faceted: Seasonal graph looking at body weight vs metabolic rate
+### Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs metabolic rate
 
 ``` r
-df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
-
-df$season <- factor(df$season, 
-                    levels = c("winter", "spring", "summer", "fall"))
-
-ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
+energy_weight_season <- heatwaves_coral_fish_clean |>
+  ggplot(aes(x = wet_mass, y = max_metabolic_rate, color = season)) +
   geom_point(alpha = 0.8, size = 2) +
   geom_smooth(method = "lm", se = FALSE) +
   facet_wrap(~ season, nrow = 1) +
@@ -184,25 +171,17 @@ ggplot(df, aes(x = bw_g, y = mmr_corrected, color = season)) +
     y = "MMR (corrected)"
   ) +
   theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5)
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5), legend.position = "none"
 
   )
+#save plot 
+ggsave("fig_body_weight_and_metabolic_rate_lineplot.png", energy_weight_season, width = 8, height = 5)
 ```
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
     ## Warning: Removed 12 rows containing non-finite outside the scale range
     ## (`stat_smooth()`).
-
-    ## Warning: Removed 12 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
-
-![](memo_files/figure-gfm/body-weight-mr-per-season-1.png)<!-- -->
-
-``` r
-#save plot 
-ggsave("fig_body_weight_and_metabolic_rate_across_2_seasons.png", temp_energy_season, width = 8, height = 5)
-```
 
     ## Warning: Removed 12 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
@@ -262,7 +241,7 @@ ggsave("fig_aerobic_vs_heatwave_boxplot.png", aerobic_scope_treatment, width = 7
     ## Warning: Removed 17 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
-### Plot 6: Boxplot: Aerobic Scope Across Seasons \#Alt Text: Scatterplot
+\#Plot 6: Boxplot: Aerobic Scope Across Seasons \#Alt Text: Scatterplot
 that compares absolute aerobic scope between summer and winter hawkfish.
 Summer fish (pink points) show values mostly between 4 and 14. Winter
 fish (teal points) show higher overall aerobic scope with points ranging
@@ -313,8 +292,6 @@ heatwaves_coral_fish_clean |>
     ## (`geom_point()`).
 
 ![](memo_files/figure-gfm/Aerobic_Scope_Seasons-2.png)<!-- -->
-
-
 
 #### Final Plot 1
 
