@@ -47,7 +47,7 @@ heatwaves_coral_fish_clean <- heatwaves_coral_fish |>
 heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
   filter(treatment_new != "wild") |>
   ggplot(aes(x = treatment_new, y = max_metabolic_rate, fill = season)) +
-  geom_boxplot() +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
   scale_x_discrete(labels = function(x) paste0(x, "°C")) +
   labs(
     title = "Maximum Metabolic Rate by Heatwave Treatment",
@@ -55,7 +55,8 @@ heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
     x = "Treatment (Heatwave Temperature)",
     y = "Maximum Metabolic Rate (MMR)",
     fill = "Season"
-  )
+  ) +
+  theme_classic()
 
 # Save the plot
 ggsave("fig_mmr_vs_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
