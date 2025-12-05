@@ -9,6 +9,7 @@ library(tidyverse)
 library(broom)
 library(viridisLite)
 library(ggplot2)
+library(readr)
 ```
 
 ## Data Clean Up Steps for Overall Data
@@ -40,7 +41,6 @@ heatwaves_coral_fish_clean <- heatwaves_coral_fish |>
 ## Plots
 
 ### Plot 1: Boxplot: Heatwave treatment vs. maximum metabolic rate (MMR), colored by season
-
 
 ```{r boxplot-treatment-vs-MMR, fig.alt= "A boxplot of maximum metabolic rate by heatwave temperature, colored by season. The box shows the fish's maximum metabolic rate is lowest at 28 °C heatwaves and highest at 31 °C."}
 
@@ -217,16 +217,35 @@ ggplot(VanWert_etal_2023_hawkfish, mapping = aes(x = mmr_corrected, y = aas_corr
 
 
 
-#### Final Plot 1
+#### Final Plot 1:  Heatwave treatment vs. (MMR), colored by season
 
-```{r}
+```{r final-boxplot-treatment-vs-MMR, fig.alt= "A boxplot of maximum metabolic rate by heatwave temperature, colored by season. The box shows the fish's maximum metabolic rate is lowest at 28 °C heatwaves and highest at 31 °C."}
+
+heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
+  filter(treatment_new != "wild") |>
+  ggplot(aes(x = treatment_new, y = max_metabolic_rate, fill = season)) +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
+  scale_x_discrete(labels = function(x) paste0(x, "°C")) +
+  labs(
+    title = "Maximum Metabolic Rate by Heatwave Treatment",
+    subtitle = "Fish MMR is lowest at 28°C heatwaves and peaks at 31°C",
+    x = "Treatment (Heatwave Temperature)",
+    y = "Maximum Metabolic Rate (MMR)",
+    fill = "Season"
+  ) +
+  theme_classic()
+
+# Save the plot
+ggsave("fig_mmr_vs_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
+
+heatwave_vs_mmr
 
 ```
 
 
-### Plot 2: Absolute Aerobic Scope vs Heatwave Treatment by Season
+### Final Plot 2: Absolute Aerobic Scope vs Heatwave Treatment by Season
 
-```{r aerobic_scope_heatwaves_seasons, fig.alt= "Vertical Box Plot showing absolute aerobic scope for fish exposed to heatwave treatments of 27°C, 28°C, 29°C, 31°C, and 33°C. The data compare summer fish (pink) and winter fish (teal). The figure is included to illustrate seasonal differences in aerobic scope across increasing temperature treatments, highlighting that winter fish display higher values across treatments."}
+```{r final_aerobic_scope_heatwaves_seasons, fig.alt= "Vertical Box Plot showing absolute aerobic scope for fish exposed to heatwave treatments of 27°C, 28°C, 29°C, 31°C, and 33°C. The data compare summer fish (pink) and winter fish (teal). The figure is included to illustrate seasonal differences in aerobic scope across increasing temperature treatments, highlighting that winter fish display higher values across treatments."}
 
 aerobic_scope_treatment <- heatwaves_coral_fish_clean |>
   filter(treatment_new != "wild") |>
@@ -254,10 +273,29 @@ ggsave("fig_aerobic_vs_heatwave_boxplot.png", aerobic_scope_treatment, width = 7
 
 ```
 
+### Final Plot 3: Time faceted: Seasonal graph looking an body weight vs metabolic rate
 
-### Plot 3: ___________
+```{r body-weight-mr-per-season, fig.alt= "A two-panel scatterplot that compares the body weight and metabolic rate (MMR) of hawkfish in the summer and winter. Winter data is displayed on the left panel, with red dots distributed between approximately 8–22 MMR and 0–12 grams body weight. A slight negative correlation between body weight and metabolic rate is shown by a shallow red trendline that slopes downward. Summer data is displayed in the right panel with blue points between around 8–20 MMR and 2–15 grams body weight. The summer trendline exhibits a higher negative correlation and slopes downward much more sharply. Summertime points are more widely dispersed, suggesting that the metabolic rate varies more during heatwaves. Every panel has the same axes."}
 
-Add more plot sections as needed. Each project should have at least 3 plots, but talk to me if you have fewer than 3.
+energy_weight_season <- heatwaves_coral_fish_clean |>
+  ggplot(aes(x = wet_mass, y = max_metabolic_rate, color = season)) +
+  geom_point(alpha = 0.8, size = 2) +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~ season, nrow = 1) +
+  xlim(0,15)+
+  theme_minimal() +
+  labs(
+    title = "Body Weight and Metabolic Rate Across Seasons for hawkfish",
+    x = "Body Weight (g)",
+    y = "MMR (corrected)"
+  ) +
+  theme(
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5), legend.position = "none"
 
-### Plot 4: ___________ 
+  ) 
+#save plot 
+ggsave("fig_body_weight_and_metabolic_rate_lineplot.png", energy_weight_season, width = 8, height = 5)
+
+energy_weight_season
+```
 
