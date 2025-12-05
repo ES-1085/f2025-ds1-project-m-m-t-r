@@ -7,6 +7,7 @@ library(tidyverse)
 library(broom)
 library(viridisLite)
 library(ggplot2)
+library(readr)
 ```
 
 ## Data Clean Up Steps for Overall Data
@@ -300,9 +301,48 @@ heatwaves_coral_fish_clean |>
 
 ![](memo_files/figure-gfm/Aerobic_Scope_Seasons-2.png)<!-- -->
 
-#### Final Plot 1
+#### Final Plot 1: Heatwave treatment vs. (MMR), colored by season
 
-### Plot 2: Absolute Aerobic Scope vs Heatwave Treatment by Season
+We included this plot because MMR is a key measure of how much energy
+fish can use for activity and survival, and this figure clearly shows
+how MMR changes across heatwave temperatures and seasons.
+
+``` r
+heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
+  filter(treatment_new != "wild") |>
+  ggplot(aes(x = treatment_new, y = max_metabolic_rate, fill = season)) +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
+  scale_x_discrete(labels = function(x) paste0(x, "°C")) +
+  labs(
+    title = "Maximum Metabolic Rate by Heatwave Treatment",
+    subtitle = "Fish MMR is lowest at 28°C heatwaves and peaks at 31°C",
+    x = "Treatment (Heatwave Temperature)",
+    y = "Maximum Metabolic Rate (MMR)",
+    fill = "Season"
+  ) +
+  theme_classic()
+
+# Save the plot
+ggsave("fig_mmr_vs_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
+```
+
+    ## Warning: Removed 3 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+``` r
+heatwave_vs_mmr
+```
+
+    ## Warning: Removed 3 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+<img src="memo_files/figure-gfm/final-boxplot-treatment-vs-MMR-1.png" alt="A boxplot of maximum metabolic rate by heatwave temperature, colored by season. The box shows the fish's maximum metabolic rate is lowest at 28 °C heatwaves and highest at 31 °C."  />
+
+### Final Plot 2: Absolute Aerobic Scope vs Heatwave Treatment by Season
+
+We included this graph because aerobic scope directly shows how much
+usable energy hawkfish have in each season, allowing us to compare how
+summer and winter fish cope with heatwave temperatures
 
 ``` r
 aerobic_scope_treatment <- heatwaves_coral_fish_clean |>
@@ -329,7 +369,7 @@ aerobic_scope_treatment
     ## Warning: Removed 17 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
-<img src="memo_files/figure-gfm/aerobic_scope_heatwaves_seasons-1.png" alt="Vertical Box Plot showing absolute aerobic scope for fish exposed to heatwave treatments of 27°C, 28°C, 29°C, 31°C, and 33°C. The data compare summer fish (pink) and winter fish (teal). The figure is included to illustrate seasonal differences in aerobic scope across increasing temperature treatments, highlighting that winter fish display higher values across treatments."  />
+<img src="memo_files/figure-gfm/final_aerobic_scope_heatwaves_seasons-1.png" alt="Vertical Box Plot showing absolute aerobic scope for fish exposed to heatwave treatments of 27°C, 28°C, 29°C, 31°C, and 33°C. The data compare summer fish (pink) and winter fish (teal). The figure is included to illustrate seasonal differences in aerobic scope across increasing temperature treatments, highlighting that winter fish display higher values across treatments."  />
 
 ``` r
 # Save the plot
@@ -339,11 +379,47 @@ ggsave("fig_aerobic_vs_heatwave_boxplot.png", aerobic_scope_treatment, width = 7
     ## Warning: Removed 17 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
-\`\`\`
 
-### Plot 3: \_\_\_\_\_\_\_\_\_\_\_
+    ### Final Plot 3: Time faceted: Seasonal graph looking an body weight vs metabolic rate
 
-Add more plot sections as needed. Each project should have at least 3
-plots, but talk to me if you have fewer than 3.
 
-### Plot 4: \_\_\_\_\_\_\_\_\_\_\_
+    ``` r
+    energy_weight_season <- heatwaves_coral_fish_clean |>
+      ggplot(aes(x = wet_mass, y = max_metabolic_rate, color = season)) +
+      geom_point(alpha = 0.8, size = 2) +
+      geom_smooth(method = "lm", se = FALSE) +
+      facet_wrap(~ season, nrow = 1) +
+      xlim(0,15)+
+      theme_minimal() +
+      labs(
+        title = "Body Weight and Metabolic Rate Across Seasons for hawkfish",
+        x = "Body Weight (g)",
+        y = "MMR (corrected)"
+      ) +
+      theme(
+        plot.title = element_text(size = 14, face = "bold", hjust = 0.5), legend.position = "none"
+
+      ) 
+    #save plot 
+    ggsave("fig_body_weight_and_metabolic_rate_lineplot.png", energy_weight_season, width = 8, height = 5)
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+    ## Warning: Removed 12 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+
+    ## Warning: Removed 12 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+``` r
+energy_weight_season
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+    ## Warning: Removed 12 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+    ## Removed 12 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+<img src="memo_files/figure-gfm/bodyweight-mr-per-season-1.png" alt="A two-panel scatterplot that compares the body weight and metabolic rate (MMR) of hawkfish in the summer and winter. Winter data is displayed on the left panel, with red dots distributed between approximately 8–22 MMR and 0–12 grams body weight. A slight negative correlation between body weight and metabolic rate is shown by a shallow red trendline that slopes downward. Summer data is displayed in the right panel with blue points between around 8–20 MMR and 2–15 grams body weight. The summer trendline exhibits a higher negative correlation and slopes downward much more sharply. Summertime points are more widely dispersed, suggesting that the metabolic rate varies more during heatwaves. Every panel has the same axes."  />
