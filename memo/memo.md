@@ -98,6 +98,15 @@ ggsave("fig_mmr_vs_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5
     ## Warning: Removed 3 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
+``` r
+heatwave_vs_mmr
+```
+
+    ## Warning: Removed 3 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+<img src="memo_files/figure-gfm/boxplot-treatment-vs-MMR-1.png" alt="A boxplot of maximum metabolic rate by heatwave temperature, colored by season. The box shows the fish's maximum metabolic rate is lowest at 28 °C heatwaves and highest at 31 °C."  />
+
 ### Plot 2: Scatter Plot: Treatment vs. post-feeding energy use, colored by season
 
 ``` r
@@ -119,6 +128,15 @@ ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, 
 
     ## Warning: Removed 12 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
+
+``` r
+temp_energy_season
+```
+
+    ## Warning: Removed 12 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](memo_files/figure-gfm/scatter-temp-energy-season-1.png)<!-- -->
 
 ### Plot 3:Time graph, seasonal cycle of metabolic rate
 
@@ -173,7 +191,7 @@ energy_weight_season <- heatwaves_coral_fish_clean |>
   theme(
     plot.title = element_text(size = 14, face = "bold", hjust = 0.5), legend.position = "none"
 
-  )
+  ) 
 #save plot 
 ggsave("fig_body_weight_and_metabolic_rate_lineplot.png", energy_weight_season, width = 8, height = 5)
 ```
@@ -185,6 +203,19 @@ ggsave("fig_body_weight_and_metabolic_rate_lineplot.png", energy_weight_season, 
 
     ## Warning: Removed 12 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
+
+``` r
+energy_weight_season
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+    ## Warning: Removed 12 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+    ## Removed 12 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+<img src="memo_files/figure-gfm/body-weight-mr-per-season-1.png" alt="A two-panel scatterplot that compares the body weight and metabolic rate (MMR) of hawkfish in the summer and winter. Winter data is displayed on the left panel, with red dots distributed between approximately 8–22 MMR and 0–12 grams body weight. A slight negative correlation between body weight and metabolic rate is shown by a shallow red trendline that slopes downward. Summer data is displayed in the right panel with blue points between around 8–20 MMR and 2–15 grams body weight. The summer trendline exhibits a higher negative correlation and slopes downward much more sharply. Summertime points are more widely dispersed, suggesting that the metabolic rate varies more during heatwaves. Every panel has the same axes."  />
 
 ### Plot 5:Absolute Aerobic Scope vs Heatwave Treatment
 
