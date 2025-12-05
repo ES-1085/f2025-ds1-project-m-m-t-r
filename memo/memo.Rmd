@@ -219,6 +219,8 @@ ggplot(VanWert_etal_2023_hawkfish, mapping = aes(x = mmr_corrected, y = aas_corr
 
 #### Final Plot 1:  Heatwave treatment vs. (MMR), colored by season
 
+We included this plot because MMR is a key measure of how much energy fish can use for activity and survival, and this figure clearly shows how MMR changes across heatwave temperatures and seasons.
+
 ```{r final-boxplot-treatment-vs-MMR, fig.alt= "A boxplot of maximum metabolic rate by heatwave temperature, colored by season. The box shows the fish's maximum metabolic rate is lowest at 28 °C heatwaves and highest at 31 °C."}
 
 heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
