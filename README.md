@@ -21,21 +21,20 @@ While Van Wert et al. (2024) provided a strong foundation for our project, there
 
 ## Handout
 
-Our handout can be found [here](handout/handout.pdf). You can update the filename and extension of your handout, currently it is called handout.pdf
+Our handout can be found [here](handout/Handout.pdf).
 
 ## Memo
 
-A link to the code and how we created our graphics in our memo can be found [here](memo/memo.html).
+A link to the code and how we created our graphics in our memo can be found [here](memo/memo.md).
 
 ## Data
 
-Include a citation for your data here. See
-<http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840> for guidance
-on proper citation for datasets. If you got your data off the web, make
-sure to note the retrieval date.
+Van Wert, J., Birnie-Gauvin, K., Gallagher, J., Hardison, E., Landfield, K., Burkepile, D., & Eliason, E. (2024). Despite plasticity, heatwaves are costly for a coral reef fish [Data set]. Dryad. Retrieved October 23, 2025, from https://doi.org/10.5061/dryad.wdbrv15vm
 
 
 ## References
 
-List any references here. You should, at a minimum, list your data
-source.
+Marcos, M., Amores, A., Agulles, M., Robson, J., & Feng, X. (2025). Global warming drives a threefold increase in persistence and 1 °C rise in intensity of marine heatwaves. Proceedings of the National Academy of Sciences of the United States of America, 122(16), e2413505122. https://doi.org/10.1073/pnas.2413505122
+
+Van Wert, J., Birnie-Gauvin, K., Gallagher, J., Hardison, E., Landfield, K., Burkepile, D., & Eliason, E. (2024). Despite plasticity, heatwaves are costly for a coral reef fish [Data set]. Dryad. Retrieved October 23, 2025, from https://doi.org/10.5061/dryad.wdbrv15vm
+
