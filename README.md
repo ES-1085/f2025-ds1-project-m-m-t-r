@@ -9,6 +9,13 @@ The study focused on the effect of heatwaves on coral reef fish. The study was c
 ## Methods
 
 The researchers used five temperature treatments (27, 28, 29, 31, or 33°C) for one week to test hawkfish’s acclimation ability, which they measured by metabolic performance metrics, including maximum metabolic rate (MMR), standard metabolic rate (SMR), and costs of digestion (specific dynamic action, SDA), using respirometry chambers. A subset of fish and wild fish were tested for thermal tolerance using an acute cardiac thermal tolerance test. The metabolic data were processed in R and the heart rate data were processed in LabChart.
+
+## Analysis
+
+## Conclusions
+
+Through our analysis of the Van Wert et al. (2024) study and our plots, we were able to understand the relationship between ocean temperatures and the functioning of hawkfish. The plots reveal at higher temperatures, hawkfish have lower maximum metabolic rates, suggesting that the high temperatures cause the fish to experience thermal stress as a result of expending too much energy. Additionally, hawkfish have lower aerobic scopes at warmer temperatures, meaning they are more strained in the summer than in the winter. Additionally, the maximum metabolic rate of hawkfish differs across body weight and season, as heavier fish in the summer have much lower maximum metabolic rates, suggesting     
+
 ## Handout
 
 Our handout can be found [here](handout/handout.pdf). You can update the filename and extension of your handout, currently it is called handout.pdf
@@ -23,6 +30,7 @@ Include a citation for your data here. See
 <http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840> for guidance
 on proper citation for datasets. If you got your data off the web, make
 sure to note the retrieval date.
+
 
 ## References
 

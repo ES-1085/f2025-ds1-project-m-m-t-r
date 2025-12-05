@@ -60,6 +60,7 @@ heatwave_vs_mmr <- heatwaves_coral_fish_clean |>
 # Save the plot
 ggsave("fig_mmr_vs_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5)
 
+heatwave_vs_mmr
 ```
 
 ### Plot 2: Scatter Plot: Treatment vs. post-feeding energy use, colored by season
@@ -80,6 +81,8 @@ temp_energy_season <- heatwaves_coral_fish_clean |>
 
 # Save the plot
 ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, height = 5)
+
+temp_energy_season
 ```
 
 
@@ -135,10 +138,11 @@ energy_weight_season <- heatwaves_coral_fish_clean |>
   theme(
     plot.title = element_text(size = 14, face = "bold", hjust = 0.5), legend.position = "none"
 
-  )
+  ) 
 #save plot 
 ggsave("fig_body_weight_and_metabolic_rate_lineplot.png", energy_weight_season, width = 8, height = 5)
 
+energy_weight_season
 ```
 
 ### Plot 5:Absolute Aerobic Scope vs Heatwave Treatment
@@ -210,7 +214,7 @@ heatwaves_coral_fish_clean |>
 # What is Absolute Aerobic Scope: Absolute Aerobic scope is the difference between an animal's maximum metabolic rate and its standard metabolic rate (lowest amount of energy needed to perform most basic functions)
 # What is Maximum Metabolic Rate: highest rate of energy expenditure an animal can sustain; often measured by the oxygen consumption during sustained, vigorous activity
 
-#Alt Text: Scatterplot that depicts the absolute aerobic scope on the y-axis and the maximum metabolic rate on the x-axis for all treatments, both winter and summer. The season is depicted in pink for summer and blue for winter. There seems to be a positive, linear relationship between maximum metabolic rate and absolute aerobic scope, such that as the maximum metabolic rate increases, so does the aerobic scope. 
+# Alt Text: Scatterplot that depicts the absolute aerobic scope on the y-axis and the maximum metabolic rate on the x-axis for all treatments, both winter and summer. The season is depicted in pink for summer and blue for winter. There seems to be a positive, linear relationship between maximum metabolic rate and absolute aerobic scope, such that as the maximum metabolic rate increases, so does the aerobic scope. 
 ```{r}
 ggplot(VanWert_etal_2023_hawkfish, mapping = aes(x = mmr_corrected, y = aas_corrected, color = season)) + 
   geom_point(size = 3, alpha = 0.8) +
