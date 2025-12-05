@@ -98,6 +98,15 @@ ggsave("fig_mmr_vs_heatwave_boxplot.png", heatwave_vs_mmr, width = 7, height = 5
     ## Warning: Removed 3 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
+``` r
+heatwave_vs_mmr
+```
+
+    ## Warning: Removed 3 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+<img src="memo_files/figure-gfm/boxplot-treatment-vs-MMR-1.png" alt="A boxplot of maximum metabolic rate by heatwave temperature, colored by season. The box shows the fish's maximum metabolic rate is lowest at 28 °C heatwaves and highest at 31 °C."  />
+
 ### Plot 2: Scatter Plot: Treatment vs. post-feeding energy use, colored by season
 
 ``` r
@@ -119,6 +128,15 @@ ggsave("fig_temp_energy_season_scatterplot.png", temp_energy_season, width = 7, 
 
     ## Warning: Removed 12 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
+
+``` r
+temp_energy_season
+```
+
+    ## Warning: Removed 12 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](memo_files/figure-gfm/scatter-temp-energy-season-1.png)<!-- -->
 
 ### Plot 3:Time graph, seasonal cycle of metabolic rate
 
@@ -173,7 +191,7 @@ energy_weight_season <- heatwaves_coral_fish_clean |>
   theme(
     plot.title = element_text(size = 14, face = "bold", hjust = 0.5), legend.position = "none"
 
-  )
+  ) 
 #save plot 
 ggsave("fig_body_weight_and_metabolic_rate_lineplot.png", energy_weight_season, width = 8, height = 5)
 ```
@@ -186,25 +204,20 @@ ggsave("fig_body_weight_and_metabolic_rate_lineplot.png", energy_weight_season, 
     ## Warning: Removed 12 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
+``` r
+energy_weight_season
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+    ## Warning: Removed 12 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+    ## Removed 12 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+<img src="memo_files/figure-gfm/body-weight-mr-per-season-1.png" alt="A two-panel scatterplot that compares the body weight and metabolic rate (MMR) of hawkfish in the summer and winter. Winter data is displayed on the left panel, with red dots distributed between approximately 8–22 MMR and 0–12 grams body weight. A slight negative correlation between body weight and metabolic rate is shown by a shallow red trendline that slopes downward. Summer data is displayed in the right panel with blue points between around 8–20 MMR and 2–15 grams body weight. The summer trendline exhibits a higher negative correlation and slopes downward much more sharply. Summertime points are more widely dispersed, suggesting that the metabolic rate varies more during heatwaves. Every panel has the same axes."  />
+
 ### Plot 5:Absolute Aerobic Scope vs Heatwave Treatment
-
-\#What is Absolute Aerobic Scope: This is the amount of energy an
-organism has for activites outside of basic survival. It is calculated
-by difference between an organism’s maximum metabolic rate and its
-standard metabolic rate. A higher absolute aerobic scope means an
-organism has more energy to available for movement, feeding, growth, or
-coping with stress. In our case a higher aerobic scope means the
-hawkfish are better able to deal with the heatwave treatments.
-
-\#Alt Text: Horizontal Box plot that dipicts the absolute aerobic scope
-for fish exposed to heatwave treatments of 27°C, 28°C, 29°C, 31°C, and
-33°C, separated by summer (pink) and winter (teal) seasons. Winter fish
-appear to have a higher aerobic scope compared to the summer fish. This
-means that they are able to handle the heatwave treatments better
-becuase they have more energy during the winter. The plot also shows
-among each season as the treatments get hotter the aerobic scope gets
-lower indicating that the harsher the heat treatment the lower the
-aerobic scope.
 
 ``` r
 aerobic_scope_treatment <- heatwaves_coral_fish_clean |>
@@ -241,13 +254,7 @@ ggsave("fig_aerobic_vs_heatwave_boxplot.png", aerobic_scope_treatment, width = 7
     ## Warning: Removed 17 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
-\#Plot 6: Boxplot: Aerobic Scope Across Seasons \#Alt Text: Scatterplot
-that compares absolute aerobic scope between summer and winter hawkfish.
-Summer fish (pink points) show values mostly between 4 and 14. Winter
-fish (teal points) show higher overall aerobic scope with points ranging
-from about 7 to 20. This plot makes it clear that Winter fish gerneally
-have higher aerobic scope during this time period as opposed to summer
-fish.
+\#Plot 6: Boxplot: Aerobic Scope Across Seasons
 
 ``` r
 heatwaves_coral_fish_clean |>
@@ -295,7 +302,44 @@ heatwaves_coral_fish_clean |>
 
 #### Final Plot 1
 
-### Plot 2: \_\_\_\_\_\_\_\_\_
+### Plot 2: Absolute Aerobic Scope vs Heatwave Treatment by Season
+
+``` r
+aerobic_scope_treatment <- heatwaves_coral_fish_clean |>
+  filter(treatment_new != "wild") |>
+  mutate(treatment_new = factor(treatment_new,
+                                levels = c("27", "28", "29", "31", "33"))) |>
+  ggplot(aes(x = treatment_new,
+             y = absolute_aerobic_scope,
+             fill = season)) +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
+  scale_x_discrete(labels = function(x) paste0(x, "°C")) +
+  labs(
+    title = "Absolute Aerobic Scope Across Heatwave Treatments",
+    subtitle = "Lower aerobic scope indicates reduced energy available for activity",
+    x = "Treatment (Heatwave Temperature)",
+    y = "Absolute Aerobic Scope",
+    fill = "Season"
+  ) +
+  theme_classic()
+
+aerobic_scope_treatment
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+<img src="memo_files/figure-gfm/aerobic_scope_heatwaves_seasons-1.png" alt="Vertical Box Plot showing absolute aerobic scope for fish exposed to heatwave treatments of 27°C, 28°C, 29°C, 31°C, and 33°C. The data compare summer fish (pink) and winter fish (teal). The figure is included to illustrate seasonal differences in aerobic scope across increasing temperature treatments, highlighting that winter fish display higher values across treatments."  />
+
+``` r
+# Save the plot
+ggsave("fig_aerobic_vs_heatwave_boxplot.png", aerobic_scope_treatment, width = 7, height = 5)
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+\`\`\`
 
 ### Plot 3: \_\_\_\_\_\_\_\_\_\_\_
 
