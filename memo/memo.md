@@ -164,7 +164,7 @@ ggsave("fig_polar_plot_metabolic_rate_per_season.png", temp_energy_season, width
     ## Warning: Removed 12 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-### Plot 4 draft: Time faceted: Seasonal graph looking an body weight vs metabolic rate
+### Plot 4 draft: Time faceted: Seasonal graph looking at body weight vs metabolic rate
 
 ``` r
 df <- read.csv("../data/VanWert_etal_2023_hawkfish.csv")
@@ -262,7 +262,7 @@ ggsave("fig_aerobic_vs_heatwave_boxplot.png", aerobic_scope_treatment, width = 7
     ## Warning: Removed 17 rows containing non-finite outside the scale range
     ## (`stat_boxplot()`).
 
-\#Plot 6: Boxplot: Aerobic Scope Across Seasons \#Alt Text: Scatterplot
+### Plot 6: Boxplot: Aerobic Scope Across Seasons \#Alt Text: Scatterplot
 that compares absolute aerobic scope between summer and winter hawkfish.
 Summer fish (pink points) show values mostly between 4 and 14. Winter
 fish (teal points) show higher overall aerobic scope with points ranging
@@ -313,6 +313,8 @@ heatwaves_coral_fish_clean |>
     ## (`geom_point()`).
 
 ![](memo_files/figure-gfm/Aerobic_Scope_Seasons-2.png)<!-- -->
+
+
 
 #### Final Plot 1
 
