@@ -268,7 +268,9 @@ ggsave("fig_aerobic_vs_heatwave_boxplot.png", aerobic_scope_treatment, width = 7
 
 ### Final Plot 3: Time faceted: Seasonal graph looking at body weight vs metabolic rate
 
-```{r bodyweight-mr-per-season, fig.alt= "A two-panel scatterplot that compares the body weight and metabolic rate (MMR) of hawkfish in the summer and winter. Winter data is displayed on the left panel, with red dots distributed between approximately 8–22 MMR and 0–12 grams body weight. A slight negative correlation between body weight and metabolic rate is shown by a shallow red trendline that slopes downward. Summer data is displayed in the right panel with blue points between around 8–20 MMR and 2–15 grams body weight. The summer trendline exhibits a higher negative correlation and slopes downward much more sharply. Summertime points are more widely dispersed, suggesting that the metabolic rate varies more during heatwaves. Every panel has the same axes."}
+We included this graph because it shows how the relationship between hawkfish body weight and the use of oxygen can change during heatwaves. Our claim that heatwaves have a major impact on hawkfish physiology is supported by a comparison of winter and summer, which shows that metabolic processes change dramatically in the heat.
+
+```{r bodyweight-mr-per-season, fig.alt= "The two scatterplots compare hawkfish body weight and metabolic rate in winter and summer. Winter points are loosely clustered with a shallow downward trend. Summer points show a wider spread and a much steeper slope, indicating stronger changes in metabolism during heat-stress conditions."}
 
 energy_weight_season <- heatwaves_coral_fish_clean |>
   ggplot(aes(x = wet_mass, y = max_metabolic_rate, color = season)) +
